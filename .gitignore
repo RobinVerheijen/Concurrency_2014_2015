@@ -10,3 +10,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Opdracht_1/Concurrency_opdracht_1/nbproject/private/
+/Opdracht_2/Concurrency_opdracht_2/nbproject/private/
+/Opdracht_3/Concurrency_opdracht_3/nbproject/private/
+/Opdracht_4/Concurrency_opdracht_4/nbproject/private/
