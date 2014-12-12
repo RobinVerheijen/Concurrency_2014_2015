@@ -5,12 +5,13 @@
  */
 public class Apl {
 	
+	
 	/**
 	 * Main method where can be chosen which assignment should be tested.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 	    
+		Werkplek werkplek = Werkplek.getWerkplek();
 	}
-
 }
