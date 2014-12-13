@@ -9,14 +9,15 @@ public class InsertionSortMultiThread extends InsertionSortThread {
 	
 	// M
 	private Merger merger;
+	private int limit;
 	
 	/**
 	 * Constructor which get passed the array with numbers
 	 * @param numbersArray
 	 */
-	public InsertionSortMultiThread(ArrayList<Integer> numbersArray) {
+	public InsertionSortMultiThread(ArrayList<Integer> numbersArray, int limit) {
 		super(numbersArray);
-		
+		this.limit = limit;
 		// Instantiate the merger
 		merger = new Merger();
 	}
@@ -29,7 +30,7 @@ public class InsertionSortMultiThread extends InsertionSortThread {
 	public void run() {
 		
 		// Check if the remaining amount of numbers is greater or equal to a certain amount
-		if(this.numbersArray.size() >= 8000) {
+		if(this.numbersArray.size() >= limit) {
 			
 			// Instantiate two new arrays for containing the numbers
 			ArrayList<Integer> firstPart = new ArrayList<Integer>();
@@ -48,8 +49,8 @@ public class InsertionSortMultiThread extends InsertionSortThread {
 			}
 			
 			// Instantiate two new threads and pass the arrays to them
-			InsertionSortMultiThread firstMultiThread = new InsertionSortMultiThread(firstPart);
-		    InsertionSortMultiThread secondMultiThread = new InsertionSortMultiThread(secondPart);
+			InsertionSortMultiThread firstMultiThread = new InsertionSortMultiThread(firstPart, limit);
+		    InsertionSortMultiThread secondMultiThread = new InsertionSortMultiThread(secondPart, limit);
 		    
 		    // Start the threads
 		    firstMultiThread.start();

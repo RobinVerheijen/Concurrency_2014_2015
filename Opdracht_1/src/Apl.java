@@ -107,32 +107,40 @@ public class Apl {
 				break;
 			case "3":
 				System.out.println("Started sorting multi threaded");
-								
-			    // Create a thread to sort the numbers, pass the array to the constructor
-			    InsertionSortMultiThread originalThread = new InsertionSortMultiThread(numbersArray);
+				long[] timeList = new long[10];
+				long average = 0;
+				for (int i =0; i < 10; i++) {
+					// Create a thread to sort the numbers, pass the array to the constructor
+				    InsertionSortMultiThread originalThread = new InsertionSortMultiThread(numbersArray, 5000);
+				    
+				    // Get the start time
+				    long beginTime = System.currentTimeMillis();
+				    
+				    // Start the array
+				    originalThread.start();
+				    
+				    // Wait for the thread to have finished
+				    try {
+				    	
+				    	originalThread.join();
+				    } catch(InterruptedException e) {
+				    	
+				    	// Catch an error
+				    	System.out.println("The sorting was interrupted");
+				    }
+				    
+				    // Calculate how long it took to sort
+		    		long endTime = System.currentTimeMillis();
+		    		timeList[i] = (endTime - beginTime);
+				}
 			    
-			    // Get the start time
-			    long beginTime = System.currentTimeMillis();
-			    
-			    // Start the array
-			    originalThread.start();
-			    
-			    // Wait for the thread to have finished
-			    try {
-			    	
-			    	originalThread.join();
-			    } catch(InterruptedException e) {
-			    	
-			    	// Catch an error
-			    	System.out.println("The sorting was interrupted");
-			    }
-			    
-			    // Calculate how long it took to sort
-	    		long endTime = System.currentTimeMillis();
-	    		long theTime = endTime - beginTime;
+				for (int i = 0; i < timeList.length; i++) {
+					average = average + timeList[i];
+				}
+				average = (average/10);
 	    		
 	    		// Show the user how long it took to sort the numbers
-	    		System.out.println("Took " + theTime + " milliseconds to sort " + amountOfNumbers);
+	    		System.out.println("Took " + average + " milliseconds to sort " + amountOfNumbers);
 				break;
 			default:
 				
