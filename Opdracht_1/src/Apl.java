@@ -18,7 +18,9 @@ public class Apl {
 		System.out.println("Which assignment would you like to test?\n 1: single threaded\n 2: double threaded\n 3: multi threaded");
 		
 		// Variable which determines the amount of numbers to be sorted.
-		int amountOfNumbers = 800000;
+		int amountOfNumbers = 50000;
+		// Variable which determines the max size of the list, for multi-threaded.
+		int limit = 500;
 		
 		// Variables for keeping track of time
 		long startTime;
@@ -106,12 +108,13 @@ public class Apl {
 	    		System.out.println("Took " + duration + " milliseconds to sort " + amountOfNumbers);
 				break;
 			case "3":
-				System.out.println("Started sorting multi threaded");
+				System.out.println("Started multi threaded sorting...");
 				long[] timeList = new long[10];
 				long average = 0;
+				// do this 10 times for getting a great average.
 				for (int i =0; i < 10; i++) {
 					// Create a thread to sort the numbers, pass the array to the constructor
-				    InsertionSortMultiThread originalThread = new InsertionSortMultiThread(numbersArray, 5000);
+				    InsertionSortMultiThread originalThread = new InsertionSortMultiThread(numbersArray, limit);
 				    
 				    // Get the start time
 				    long beginTime = System.currentTimeMillis();
@@ -140,7 +143,7 @@ public class Apl {
 				average = (average/10);
 	    		
 	    		// Show the user how long it took to sort the numbers
-	    		System.out.println("Took " + average + " milliseconds to sort " + amountOfNumbers);
+	    		System.out.println("Took an average of " + average + " milliseconds (over 10 tries) to sort " + amountOfNumbers + " numbers ");
 				break;
 			default:
 				
