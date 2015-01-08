@@ -12,6 +12,8 @@ public class Apl {
 	 */
 	public static void main(String[] args) {
 	    
+		Sinterklaas sinterklaas = new Sinterklaas();
+		
 		Werkplek werkplek = Werkplek.getWerkplek();
 	}
 }

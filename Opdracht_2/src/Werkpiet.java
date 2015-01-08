@@ -1,17 +1,41 @@
 
 public class Werkpiet extends Piet {
+		
+	public Werkpiet() {
+		super();
+	}
+	
+	public void run(){
+		
+		while(true) {
+			
+			try {
+				buyPresents();
 
-	public Werkpiet(String color) {
-		super(color);
-		
-		System.out.println("TEST");
+				Werkplek.meldVoorOverleg(this);
+								
+				if(Werkplek.sinterklaas.inMeeting == false) {
+										
+					if(Werkplek.sinterklaas.getOverlegType().equals("werkoverleg")) {
+						
+						Werkplek.werkOverleg.acquire();
+					} else if(Werkplek.sinterklaas.getOverlegType().equals("verzameloverleg")) {
+						
+						Werkplek.verzamelOverleg.acquire();
+					}
+				}
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+		}
 	}
 	
-	public void getPresents() {
+	public void buyPresents() {
 		
-	}
-	
-	public void goToSint() {
-		
+		try {
+			
+			Thread.sleep((int)(Math.random() * 10000));
+		} catch (InterruptedException e) {}		
 	}
 }
